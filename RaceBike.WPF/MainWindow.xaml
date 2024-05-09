@@ -1,0 +1,67 @@
+﻿<Window x:Class="RaceBike.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RaceBike.WPF" 
+        xmlns:viewmodel="clr-namespace:RaceBike.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:RaceBikeViewModel}"
+        mc:Ignorable="d"
+        Title="RaceBike 2000" Height="639" Width="496"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize" FontFamily="Consolas" FontSize="16">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Space" Command="{Binding KeyCommand_PauseResume}"/>
+        <KeyBinding Key="Left" Command="{Binding KeyCommand_MoveLeft}" />
+        <KeyBinding Key="Right" Command="{Binding KeyCommand_MoveRight}"/>
+        <KeyBinding Key="Up" Command="{Binding KeyCommand_SpeedUp}"/>
+        <KeyBinding Key="Down" Command="{Binding KeyCommand_SlowDown}"/>
+    </Window.InputBindings>
+
+    <Canvas Background="LightGray">
+        <ItemsControl ItemsSource="{Binding FuelLocations}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Rectangle Width="40" Height="40" Fill="Crimson"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Width="480">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" 
+                   Name="bestTimeLabel" Content="{Binding LatestBestTime}"/>
+            <Label Grid.Column="0" Grid.Row="1" 
+                   Name="currentTimeLabel" Content="{Binding CurrentTime}"/>
+            <ProgressBar Grid.Column="1" Grid.Row="0" 
+                         Name="tankProgressBar" Width="75" Height="15" Value="{Binding CurrentTankLevel}" 
+                         HorizontalAlignment="Right"/>
+            <Label Grid.Column="1"  Grid.Row="1" 
+                   Name="speedLabel" Content="{Binding CurrentSpeed}" 
+                   HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Rectangle x:Name="bikeRectange" Fill="RoyalBlue" Width="40" Height="40" 
+                   Canvas.Left="{Binding BikeLocation.X}" Canvas.Top="{Binding BikeLocation.Y}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Top"/>
+    </Canvas>
+</Window>

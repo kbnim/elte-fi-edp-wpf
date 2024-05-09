@@ -1,0 +1,21 @@
+﻿<Window x:Class="RaceBike.WPF.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RaceBike.WPF" 
+        xmlns:viewmodel="clr-namespace:RaceBike.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MenuViewModel}"
+        mc:Ignorable="d"
+        Title="RaceBike" Height="280" Width="250" ResizeMode="NoResize" Topmost="true" WindowStartupLocation="CenterScreen"
+        FontFamily="Consolas" FontSize="16" Visibility="{Binding MenuVisibility}">
+    <StackPanel Background="DarkGray">
+        <Label Name="titleLabel" HorizontalAlignment="Center" FontWeight="Bold" Content="{Binding TitleText}"/>
+        <Label Name="additionalInfo1Label" Content="{Binding Description01Text}"/>
+        <Label Name="additionalInfo2Label" Content="{Binding Description02Text}"/>
+        <Button Name="newResumeButton" Padding="3" Content="{Binding NewResumeText}" Command="{Binding ButtonCommand_NewResume}"/>
+        <Button Name="loadButton" Content="Load" Padding="3" Command="{Binding ButtonCommand_Load}"/>
+        <Button Name="saveButton" Content="Save" Padding="3" Command="{Binding ButtonCommand_Save}" IsEnabled="{Binding IsSaveEnabled}"/>
+        <Button Name="helpButton" Content="Help" Padding="3" Command="{Binding ButtonCommand_Help}"/>
+        <Button Name="quitButton" Content="Quit" Padding="3" Command="{Binding ButtonCommand_Quit}"/>
+    </StackPanel>
+</Window>
