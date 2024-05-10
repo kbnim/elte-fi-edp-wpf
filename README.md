@@ -20,4 +20,4 @@ A program biztosítson lehetőséget új játék kezdésére, valamint játék s
 
 ## Documentation
 
-The documentation can be accessed via the following [link](https://github.com/kbnim/elte-fi-edp-winforms/blob/main/RaceBike.Docs/eva_bead02_ap3558.pdf).
+The documentation can be accessed via the following [link](https://github.com/kbnim/elte-fi-edp-wpf/blob/main/RaceBike.Docs/eva_bead02_ap3558.pdf).
